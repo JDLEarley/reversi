@@ -789,7 +789,10 @@ function send_game_update(socket,game_id,message) {
     
     if(count == 64) {
         /* send a game over message */
-        var succcess_data = {
+        /* Adding this console log per Jana; take it out if this doesn't work */
+        console.log('we are in the if statement and count == 64');
+        /* remove the console.log above if this doesn't fix it */
+        var success_data = {
                             result: 'success',
                             game: games[game_id],
                             who_won: 'everyone',
