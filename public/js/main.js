@@ -351,7 +351,7 @@ socket.on('game_update',function(payload) {
                 whitesum++;
             }
         
-        /* If a board space has change */
+        /* If a board space has changed */
         if(old_board[row][column] != board[row][column]) {
             if(old_board[row][column] == '?' && board[row][column] == ' ') {
                 $('#'+row+'_'+column).html('<img src="assets/images/empty.gif" alt="empty square"/>');
@@ -374,12 +374,22 @@ socket.on('game_update',function(payload) {
                 else if(old_board[row][column] == 'b' && board[row][column] == ' ') {
                     $('#'+row+'_'+column).html('<img src="assets/images/black_to_empty.gif" alt="empty square"/>');
                 }
+                /* SAVE THIS CODE - IT IS PROVEN TO WORK - BEGIN *****
                 else if(old_board[row][column] == 'w' && board[row][column] == 'b') {
                     $('#'+row+'_'+column).html('<img src="assets/images/white_to_black.gif" alt="black square"/>');
                 }
                 else if(old_board[row][column] == 'b' && board[row][column] == 'w') {
                     $('#'+row+'_'+column).html('<img src="assets/images/black_to_white.gif" alt="white square"/>');
                 }
+                ***** END OF SAVE THIS CODE */
+               /* BUG ALERT - Trying this per Grey to see if I can get the chips to flip every time */
+               else if(old_board[row][column] == 'w' && board[row][column] == 'b') {
+                    $('#'+row+'_'+column).html('<img src="assets/images/white_to_black.gif?rnd=' +Math.random()+ 'alt="black square"/>');
+                }
+                else if(old_board[row][column] == 'b' && board[row][column] == 'w') {
+                    $('#'+row+'_'+column).html('<img src="assets/images/black_to_white.gif?rnd=' +Math.random()+ 'alt="white square"/>');
+                }
+                /* END OF BUG ALERT */
                 else {
                     $('#'+row+'_'+column).html('<img src="assets/images/error.gif" alt="error square"/>');
                 }
